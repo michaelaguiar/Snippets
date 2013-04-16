@@ -54,6 +54,11 @@ function Core()
 		return;
     }
     
+    this.isRetina = function()
+    {
+		return (window.devicePixelRatio >= 2) ? true : false;
+	}
+    
     this.round_number = function(num, dec)
     {
     	return Math.round(num * Math.pow(10,dec)) / Math.pow(10,dec);
