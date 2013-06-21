@@ -6,13 +6,13 @@
 
 function Core()
 {
-	var error = 0;
+    var error = 0;
 
     this.ajax = function (ajaxType, ajaxURL, data, dataType, callback, async)
     {
         var ajaxResponse, 
-        	success,
-        	async = (!async) ? false : async;
+            success,
+            async = (!async) ? false : async;
         
         $.ajax({
             type: ajaxType,
@@ -48,16 +48,16 @@ function Core()
     
     this.debug = function(msg)
     {
-		if (window.console && window.console.log) {
-			console.log(msg);
-		}
-		return;
+	if (window.console && window.console.log) {
+	    console.log(msg);
+	}
+	return;
     }
     
     this.isRetina = function()
     {
-		return (window.devicePixelRatio >= 2) ? true : false;
-	}
+        return (window.devicePixelRatio >= 2) ? true : false;
+    }
     
     this.round_number = function(num, dec)
     {
@@ -66,35 +66,40 @@ function Core()
         
     this.add_comma = function(num)
     {
-	    num += '';
-	    var x = num.split('.'),
-	    	x1 = x[0],
-	    	x2 = x.length > 1 ? '.' + x[1] : '',
-	    	rgx = /(\d+)(\d{3})/;
+	num += '';
+	var x = num.split('.'),
+	x1 = x[0],
+	x2 = x.length > 1 ? '.' + x[1] : '',
+	rgx = /(\d+)(\d{3})/;
 	    
-	    while (rgx.test(x1)) {
-	        x1 = x1.replace(rgx, '$1' + ',' + '$2');
-	    }
+	while (rgx.test(x1)) {
+	    x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
 	    
-	    return x1 + x2;
+	return x1 + x2;
     }
     
     this.format_currency = function(num)
     {
-		num -= 0;
-		num = (Math.round(num*100))/100;
+	num -= 0;
+	num = (Math.round(num*100))/100;
     	return Core.add_comma((num == Math.floor(num)) ? num + '.00' : ( (num*10 == Math.floor(num*10)) ? num + '0' : num));
     }
     
     this.make_query = function(arr)
     {
-	    var s = '';
+	var s = '';
 	    
-	    for (var e in arr) {
-	       s += '&' + e + '=' + escape(arr[e]);
-	    }
+	for (var e in arr) {
+	   s += '&' + e + '=' + escape(arr[e]);
+	}
 	    
-	    return s.substring(1);
+	return s.substring(1);
+    }
+    
+    this.multiSort = function(arr, key)
+    {
+    	return arr.sort(function (a, b) {return a[key].localeCompare( b[key]);});
     }
 }
 var Core = new Core();
