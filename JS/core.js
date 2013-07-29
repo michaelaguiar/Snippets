@@ -101,5 +101,12 @@ function Core()
     {
     	return arr.sort(function (a, b) {return a[key].localeCompare( b[key]);});
     }
+    
+    this.log = function(msg)
+    {
+    	if (window.console){
+            console.log(err);
+	}
+    }
 }
-var Core = new Core();
+var Core = new Core();
